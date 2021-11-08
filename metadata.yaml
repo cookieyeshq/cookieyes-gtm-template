@@ -1,6 +1,6 @@
-homepage: "www.cookieyes.com"
-documentation: "https://www.cookieyes.com/cookieyes-google-consent-mode/"
+homepage: "https://www.cookieyes.com"
+documentation: "https://www.cookieyes.com/cookieyes-google-consent-mode"
 versions:
   # latest version
-  - sha:  0a5a7f9afa608b064f5b4d5de44400d7181c05e2
+  - sha:  12d6c1b1007f4fbb0b5e8ead99ab1a189a9131d5
     changeNotes: Initial release
