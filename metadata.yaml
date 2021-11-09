@@ -2,5 +2,7 @@ homepage: "https://www.cookieyes.com"
 documentation: "https://www.cookieyes.com/cookieyes-google-consent-mode"
 versions:
   # latest version
+  - sha:  b787b9680bfe63541d1db2e209a5f6093a543ed6
+    changeNotes: Updated product brand name
   - sha:  12d6c1b1007f4fbb0b5e8ead99ab1a189a9131d5
     changeNotes: Initial release
