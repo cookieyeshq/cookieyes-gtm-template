@@ -111,16 +111,18 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 const injectScript = require('injectScript');
 const queryPermission = require('queryPermission');
 const setDefaultConsentState =require('setDefaultConsentState');
+const encodeUri = require('encodeUri');
 
 setDefaultConsentState({
   'functional_storage': data.functional,
+  'functionality_storage': data.functional,
   'personalization_storage': data.functional,
   'analytics_storage': data.analytics,
   'ad_storage': data.advertisement,
   'security_storage': 'granted'
 });
 
-let scriptURL = 'https://cdn-cookieyes.com/client_data/' + data.websiteKey + '/script.js';
+let scriptURL = 'https://cdn-cookieyes.com/client_data/' + encodeUri(data.websiteKey + '/script.js');
 if (!queryPermission('inject_script', scriptURL))
    return data.gtmOnFailure();
 injectScript(scriptURL, data.gtmOnSuccess, data.gtmOnFailure);
@@ -321,6 +323,37 @@ ___WEB_PERMISSIONS___
                     "boolean": true
                   }
                 ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "functionality_storage"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
               }
             ]
           }
@@ -342,6 +375,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 28/10/2021, 11:02:04
+Created on 25/01/2022, 15:28:57
 
 
