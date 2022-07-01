@@ -1,4 +1,4 @@
-___TERMS_OF_SERVICE___
+﻿___TERMS_OF_SERVICE___
 
 By creating or modifying this file you agree to Google Tag Manager's Community
 Template Gallery Developer Terms of Service available at
@@ -102,6 +102,24 @@ ___TEMPLATE_PARAMETERS___
         "simpleValueType": true
       }
     ]
+  },
+  {
+    "type": "TEXT",
+    "name": "waitForTime",
+    "displayName": "Wait for update",
+    "simpleValueType": true,
+    "help": "Set the number of milliseconds to wait before firing tags waiting for consent.",
+    "valueValidators": [
+      {
+        "type": "POSITIVE_NUMBER",
+        "enablingConditions": []
+      },
+      {
+        "type": "NON_EMPTY"
+      }
+    ],
+    "defaultValue": 2000,
+    "valueUnit": "milliseconds"
   }
 ]
 
@@ -119,7 +137,8 @@ setDefaultConsentState({
   'personalization_storage': data.functional,
   'analytics_storage': data.analytics,
   'ad_storage': data.advertisement,
-  'security_storage': 'granted'
+  'security_storage': 'granted',
+  'wait_for_update': data.waitForTime
 });
 
 let scriptURL = 'https://cdn-cookieyes.com/client_data/' + encodeUri(data.websiteKey + '/script.js');
@@ -354,6 +373,37 @@ ___WEB_PERMISSIONS___
                     "boolean": true
                   }
                 ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "wait_for_update"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
               }
             ]
           }
@@ -375,6 +425,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 25/01/2022, 15:28:57
+Created on 29/06/2022, 23:29:56
 
 
