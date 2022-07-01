@@ -6,3 +6,5 @@ versions:
     changeNotes: Initial release
   - sha:  5f9e5bc7454b8ddde69c7f67856a4503839a4d8c
     changeNotes: Updates based on issues
+  - sha:  d98f4db559bb72a99d173cc4a81c499c8d2b8df8
+    changeNotes: Added wait for update parameter
