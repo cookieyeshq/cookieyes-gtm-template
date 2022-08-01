@@ -2,9 +2,9 @@ homepage: "https://www.cookieyes.com"
 documentation: "https://www.cookieyes.com/cookieyes-google-consent-mode"
 versions:
   # latest version
-  - sha:  b787b9680bfe63541d1db2e209a5f6093a543ed6
-    changeNotes: Initial release
-  - sha:  5f9e5bc7454b8ddde69c7f67856a4503839a4d8c
-    changeNotes: Updates based on issues
   - sha:  d98f4db559bb72a99d173cc4a81c499c8d2b8df8
     changeNotes: Added wait for update parameter
+  - sha:  5f9e5bc7454b8ddde69c7f67856a4503839a4d8c
+    changeNotes: Updates based on issues
+  - sha:  b787b9680bfe63541d1db2e209a5f6093a543ed6
+    changeNotes: Initial release
