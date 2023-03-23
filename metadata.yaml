@@ -2,6 +2,8 @@ homepage: "https://www.cookieyes.com"
 documentation: "https://www.cookieyes.com/cookieyes-google-consent-mode"
 versions:
   # latest version
+  - sha:  16790a87ecc51f0a5385207c28f77894afe8ab44
+    changeNotes: Added region wise consent, redact ads, url pass through options
   - sha:  d98f4db559bb72a99d173cc4a81c499c8d2b8df8
     changeNotes: Added wait for update parameter
   - sha:  5f9e5bc7454b8ddde69c7f67856a4503839a4d8c
