@@ -46,104 +46,209 @@ ___TEMPLATE_PARAMETERS___
   },
   {
     "type": "GROUP",
-    "name": "consentValues",
+    "name": "group1",
     "displayName": "Default Consent Settings",
     "groupStyle": "ZIPPY_OPEN_ON_PARAM",
     "subParams": [
       {
-        "type": "SELECT",
-        "name": "analytics",
-        "displayName": "Analytics Cookies",
-        "macrosInSelect": false,
-        "selectItems": [
+        "type": "PARAM_TABLE",
+        "name": "regionSettings",
+        "paramTableColumns": [
           {
-            "value": "granted",
-            "displayValue": "Enabled"
+            "param": {
+              "type": "SELECT",
+              "name": "analytics",
+              "displayName": "Analytics Cookies",
+              "macrosInSelect": false,
+              "selectItems": [
+                {
+                  "value": "granted",
+                  "displayValue": "Enabled"
+                },
+                {
+                  "value": "denied",
+                  "displayValue": "Disabled"
+                }
+              ],
+              "simpleValueType": true
+            },
+            "isUnique": false
           },
           {
-            "value": "denied",
-            "displayValue": "Disabled"
-          }
-        ],
-        "simpleValueType": true
-      },
-      {
-        "type": "SELECT",
-        "name": "advertisement",
-        "displayName": "Advertisement Cookies",
-        "macrosInSelect": false,
-        "selectItems": [
-          {
-            "value": "granted",
-            "displayValue": "Enabled"
+            "param": {
+              "type": "SELECT",
+              "name": "advertisement",
+              "displayName": "Advertisement Cookies",
+              "macrosInSelect": false,
+              "selectItems": [
+                {
+                  "value": "granted",
+                  "displayValue": "Enabled"
+                },
+                {
+                  "value": "denied",
+                  "displayValue": "Disabled"
+                }
+              ],
+              "simpleValueType": true
+            },
+            "isUnique": false
           },
           {
-            "value": "denied",
-            "displayValue": "Disabled"
-          }
-        ],
-        "simpleValueType": true
-      },
-      {
-        "type": "SELECT",
-        "name": "functional",
-        "displayName": "Functional Cookies",
-        "macrosInSelect": false,
-        "selectItems": [
-          {
-            "value": "granted",
-            "displayValue": "Enabled"
+            "param": {
+              "type": "SELECT",
+              "name": "functional",
+              "displayName": "Functional Cookies",
+              "macrosInSelect": false,
+              "selectItems": [
+                {
+                  "value": "granted",
+                  "displayValue": "Enabled"
+                },
+                {
+                  "value": "denied",
+                  "displayValue": "Disabled"
+                }
+              ],
+              "simpleValueType": true
+            },
+            "isUnique": false
           },
           {
-            "value": "denied",
-            "displayValue": "Disabled"
+            "param": {
+              "type": "SELECT",
+              "name": "security",
+              "displayName": "Necessary Cookies",
+              "selectItems": [
+                {
+                  "value": "granted",
+                  "displayValue": "Enabled"
+                },
+                {
+                  "value": "denied",
+                  "displayValue": "Disabled"
+                }
+              ],
+              "simpleValueType": true,
+              "macrosInSelect": false
+            },
+            "isUnique": false
+          },
+          {
+            "param": {
+              "type": "TEXT",
+              "name": "regions",
+              "displayName": "Regions",
+              "simpleValueType": true,
+              "defaultValue": "All",
+              "help": "Specify a comma-separated list of \u003ca href\u003d\"https://en.wikipedia.org/wiki/ISO_3166-2\"\u003eregions\u003c/a\u003e for which you want to apply this setting. If you specify All, the setting will be applied to all users."
+            },
+            "isUnique": false
           }
         ],
-        "simpleValueType": true
+        "newRowButtonText": "Add Setting"
       }
     ]
   },
   {
-    "type": "TEXT",
-    "name": "waitForTime",
-    "displayName": "Wait for update",
-    "simpleValueType": true,
-    "help": "Set the number of milliseconds to wait before firing tags waiting for consent.",
-    "valueValidators": [
+    "type": "GROUP",
+    "name": "otherSettings",
+    "displayName": "Other Settings",
+    "groupStyle": "ZIPPY_OPEN_ON_PARAM",
+    "subParams": [
       {
-        "type": "POSITIVE_NUMBER",
-        "enablingConditions": []
+        "type": "TEXT",
+        "name": "waitForTime",
+        "displayName": "Wait for update",
+        "simpleValueType": true,
+        "help": "Set the number of milliseconds to wait before firing tags waiting for consent.",
+        "valueValidators": [
+          {
+            "type": "POSITIVE_NUMBER",
+            "enablingConditions": []
+          },
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "defaultValue": 2000,
+        "valueUnit": "milliseconds"
       },
       {
-        "type": "NON_EMPTY"
+        "type": "CHECKBOX",
+        "name": "urlPassThrough",
+        "checkboxText": "Pass ad click information through URLs",
+        "simpleValueType": true,
+        "help": "Check this option if you would like internal links to include advertising identifiers (such as gclid, dclid, gclsrc, and _gl) in their URLs while waiting for consent to be granted."
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "adsRedaction",
+        "checkboxText": "Redact ads data",
+        "simpleValueType": true,
+        "help": "When this option is checked and the default consent state of \"Advertisement Cookies\" is disabled, Google\u0027s advertising tags will remove all advertising identifiers from the requests, and route the traffic through domains that do not use cookies."
       }
-    ],
-    "defaultValue": 2000,
-    "valueUnit": "milliseconds"
+    ]
   }
 ]
 
 
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
-const injectScript = require('injectScript');
-const queryPermission = require('queryPermission');
-const setDefaultConsentState =require('setDefaultConsentState');
-const encodeUri = require('encodeUri');
+const injectScript = require("injectScript");
+const queryPermission = require("queryPermission");
+const setDefaultConsentState = require("setDefaultConsentState");
+const encodeUri = require("encodeUri");
+const gtagSet = require("gtagSet");
 
-setDefaultConsentState({
-  'functional_storage': data.functional,
-  'functionality_storage': data.functional,
-  'personalization_storage': data.functional,
-  'analytics_storage': data.analytics,
-  'ad_storage': data.advertisement,
-  'security_storage': 'granted',
-  'wait_for_update': data.waitForTime
+let setDefaultSetting = true;
+const regionSettings = data.regionSettings || [];
+const waitForTime = data.waitForTime;
+
+function setConsentInitStates(consentData) {
+  if (waitForTime > 0) consentData.wait_for_update = waitForTime;
+  setDefaultConsentState(consentData);
+}
+
+gtagSet({
+  ads_data_redaction: !!data.adsRedaction,
+  url_passthrough: !!data.urlPassThrough,
+  "developer_id.dY2Q2ZW": true,
 });
 
-let scriptURL = 'https://cdn-cookieyes.com/client_data/' + encodeUri(data.websiteKey + '/script.js');
-if (!queryPermission('inject_script', scriptURL))
-   return data.gtmOnFailure();
+for (let index = 0; index < regionSettings.length; index++) {
+  const regionSetting = regionSettings[index];
+  const consentRegionData = {
+    ad_storage: regionSetting.advertisement,
+    analytics_storage: regionSetting.analytics,
+    functionality_storage: regionSetting.functional,
+    personalization_storage: regionSetting.functional,
+    security_storage: regionSetting.security,
+  };
+  const regionsToSetFor = regionSetting.regions
+    .split(",")
+    .map((region) => region.trim())
+    .filter((region) => region);
+  if (regionsToSetFor.length > 0 && regionsToSetFor[0].toLowerCase() !== "all")
+    consentRegionData.region = regionsToSetFor;
+  else setDefaultSetting = false;
+  setConsentInitStates(consentRegionData);
+}
+
+if (setDefaultSetting) {
+  setConsentInitStates({
+    ad_storage: "denied",
+    analytics_storage: "denied",
+    functionality_storage: "denied",
+    personalization_storage: "denied",
+    security_storage: "granted",
+  });
+}
+
+let scriptURL =
+  "https://cdn-cookieyes.com/client_data/" +
+  encodeUri(data.websiteKey + "/script.js");
+if (!queryPermission("inject_script", scriptURL)) return data.gtmOnFailure();
 injectScript(scriptURL, data.gtmOnSuccess, data.gtmOnFailure);
 
 
@@ -404,6 +509,40 @@ ___WEB_PERMISSIONS___
                     "boolean": true
                   }
                 ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "write_data_layer",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "keyPatterns",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 1,
+                "string": "ads_data_redaction"
+              },
+              {
+                "type": 1,
+                "string": "url_passthrough"
+              },
+              {
+                "type": 1,
+                "string": "developer_id.dY2Q2ZW"
               }
             ]
           }
