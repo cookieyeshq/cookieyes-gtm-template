@@ -59,7 +59,7 @@ ___TEMPLATE_PARAMETERS___
               "type": "SELECT",
               "name": "analytics",
               "displayName": "Analytics Cookies",
-              "macrosInSelect": false,
+              "macrosInSelect": true,
               "selectItems": [
                 {
                   "value": "granted",
@@ -79,7 +79,7 @@ ___TEMPLATE_PARAMETERS___
               "type": "SELECT",
               "name": "advertisement",
               "displayName": "Advertisement Cookies",
-              "macrosInSelect": false,
+              "macrosInSelect": true,
               "selectItems": [
                 {
                   "value": "granted",
@@ -99,7 +99,7 @@ ___TEMPLATE_PARAMETERS___
               "type": "SELECT",
               "name": "functional",
               "displayName": "Functional Cookies",
-              "macrosInSelect": false,
+              "macrosInSelect": true,
               "selectItems": [
                 {
                   "value": "granted",
@@ -130,7 +130,7 @@ ___TEMPLATE_PARAMETERS___
                 }
               ],
               "simpleValueType": true,
-              "macrosInSelect": false
+              "macrosInSelect": true
             },
             "isUnique": false
           },
