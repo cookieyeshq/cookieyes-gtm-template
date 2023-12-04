@@ -14,7 +14,10 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "CookieYes CMP",
-  "categories": ["TAG_MANAGEMENT", "PERSONALIZATION"],
+  "categories": [
+    "TAG_MANAGEMENT",
+    "PERSONALIZATION"
+  ],
   "brand": {
     "id": "brand_dummy",
     "displayName": "CookieYes",
@@ -136,6 +139,46 @@ ___TEMPLATE_PARAMETERS___
           },
           {
             "param": {
+              "type": "SELECT",
+              "name": "adUserData",
+              "displayName": "Share user data with Google",
+              "macrosInSelect": true,
+              "selectItems": [
+                {
+                  "value": "granted",
+                  "displayValue": "Enabled"
+                },
+                {
+                  "value": "denied",
+                  "displayValue": "Disabled"
+                }
+              ],
+              "simpleValueType": true
+            },
+            "isUnique": false
+          },
+          {
+            "param": {
+              "type": "SELECT",
+              "name": "adPersonal",
+              "displayName": "Use data for ads personalization",
+              "macrosInSelect": true,
+              "selectItems": [
+                {
+                  "value": "granted",
+                  "displayValue": "Enabled"
+                },
+                {
+                  "value": "denied",
+                  "displayValue": "Disabled"
+                }
+              ],
+              "simpleValueType": true
+            },
+            "isUnique": false
+          },
+          {
+            "param": {
               "type": "TEXT",
               "name": "regions",
               "displayName": "Regions",
@@ -224,6 +267,8 @@ for (let index = 0; index < regionSettings.length; index++) {
     functionality_storage: regionSetting.functional,
     personalization_storage: regionSetting.functional,
     security_storage: regionSetting.security,
+    ad_user_data: regionSetting.adUserData,
+    ad_personalization: regionSetting.adPersonal
   };
   const regionsToSetFor = regionSetting.regions
     .split(",")
@@ -242,6 +287,8 @@ if (setDefaultSetting) {
     functionality_storage: "denied",
     personalization_storage: "denied",
     security_storage: "granted",
+    ad_user_data: "denied",
+    ad_personalization: "denied"
   });
 }
 
@@ -499,6 +546,68 @@ ___WEB_PERMISSIONS___
                   {
                     "type": 1,
                     "string": "wait_for_update"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "ad_user_data"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "ad_personalization"
                   },
                   {
                     "type": 8,
