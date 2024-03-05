@@ -38,7 +38,7 @@ ___TEMPLATE_PARAMETERS___
     "name": "websiteKey",
     "displayName": "Website Key",
     "simpleValueType": true,
-    "help": "Log in to your CookieYes account \u003e Click the profile icon at the right top of the screen \u003e Go to Account Settings \u003e Click on the Get Script button associated with your site \u003e Click Copy Code \u003e Copy your website key from the src attribute (e.g. src\u003d\"https://cdn-cookieyes.com/client_data/YOUR_WEBSITE_KEY.js\").",
+    "help": "Log in to your CookieYes account \u003e Select your website from the dropdown on the header \u003e Navigate to \u003cb\u003eAdvanced Settings\u003c/b\u003e \u003e Click \u003cb\u003eGet installation code\u003c/b\u003e \u003e Copy your \u003cb\u003ewebsite key\u003c/b\u003e from the src attribute (e.g. src\u003d “https://cdn-cookieyes.com/client_data/\u003cb\u003eyour_website_key\u003c/b\u003e/script.js”).",
     "notSetText": "This field is required.",
     "valueValidators": [
       {
