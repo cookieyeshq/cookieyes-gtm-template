@@ -243,10 +243,16 @@ const queryPermission = require("queryPermission");
 const setDefaultConsentState = require("setDefaultConsentState");
 const encodeUri = require("encodeUri");
 const gtagSet = require("gtagSet");
+const getCookieValues = require("getCookieValues");
+const updateConsentState = require("updateConsentState");
 
 let setDefaultSetting = true;
 const regionSettings = data.regionSettings || [];
 const waitForTime = data.waitForTime;
+
+function getConsentStateForCategory(categoryConsent) {
+  return categoryConsent === "yes" ? "granted" : "denied";
+}
 
 function setConsentInitStates(consentData) {
   if (waitForTime > 0) consentData.wait_for_update = waitForTime;
@@ -289,6 +295,25 @@ if (setDefaultSetting) {
     security_storage: "granted",
     ad_user_data: "denied",
     ad_personalization: "denied"
+  });
+}
+
+const consentString = getCookieValues("cookieyes-consent", false)[0];
+if (consentString && typeof consentString === "string") {
+  const cookieObj = consentString.split(",").reduce(function (acc, curr) {
+    const cookieValue = curr.trim().split(":");
+    acc[cookieValue[0]] = getConsentStateForCategory(cookieValue[1]);
+    return acc;
+  }, {});
+
+  updateConsentState({
+    ad_storage: cookieObj.advertisement,
+    analytics_storage: cookieObj.analytics,
+    functionality_storage: cookieObj.functional,
+    personalization_storage: cookieObj.functional,
+    security_storage: cookieObj.necessary,
+    ad_user_data: cookieObj.advertisement,
+    ad_personalization: cookieObj.advertisement,
   });
 }
 
@@ -652,6 +677,39 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "developer_id.dY2Q2ZW"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "get_cookies",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "cookieAccess",
+          "value": {
+            "type": 1,
+            "string": "specific"
+          }
+        },
+        {
+          "key": "cookieNames",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 1,
+                "string": "cookieyes-consent"
               }
             ]
           }
