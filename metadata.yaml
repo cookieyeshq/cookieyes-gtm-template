@@ -2,6 +2,8 @@ homepage: "https://www.cookieyes.com"
 documentation: "https://www.cookieyes.com/cookieyes-google-consent-mode"
 versions:
   # latest version
+  - sha:  7a671a4a2ce3efe5ec707be68e990f47df0e48a5
+    changeNotes: Added reading cookie and update values
   - sha:  9984e06472358321d37b62b05c3186e226d944dc
     changeNotes: Updated help text for website key
   - sha:  7edef923628ec64c89032406dd3a574af337114b
