@@ -29,6 +29,66 @@ ___INFO___
   ]
 }
 
+___VENDOR_DETAILS___
+{
+  "preview": [],
+  "vendorName": "CookieYes",
+  "description": "<p><b>CookieYes</b> is a comprehensive consent management platform trusted by over <b>1.5 million websites</b> to ensure compliance with global data privacy laws, including the <b>GDPR</b> and the <b>CPRA/CCPA</b>.</p>",
+  "homepageUrl": "https://www.cookieyes.com",
+  "termsAndConditionsUrl": "https://www.cookieyes.com/terms-and-conditions",
+  "freeTrial": "<p><b>14-day free trial</b> with full access to selected plan features. Cancel anytime, no credit card needed.</p>",
+  "freeTier": "Lifetime free plan available",
+  "price": "<p><b>Free forever</b> plan (1 per account) available.</p><p>Premium plans start at <b>Basic: $10/month</b> with advanced features. <b>Pro: $25</b> adds geo-targeting, monthly scans & more. <b>Ultimate: $55</b> includes unlimited pageviews, branding removal & more.",
+  "countries": "No limitations",
+  "languages": [
+    "ar",
+    "bg",
+    "bs",
+    "ca",
+    "cs", 
+    "cy",
+    "da",
+    "de",
+    "el",
+    "en",
+    "es",
+    "et",
+    "eu",
+    "fi",
+    "fr",
+    "gl",
+    "hr",
+    "hu",
+    "it",
+    "ja",
+    "ko",
+    "lt",
+    "lv",
+    "mt",
+    "nl",
+    "no",
+    "pl",
+    "pt-br",
+    "pt",
+    "ro",
+    "ru",
+    "sk",
+    "sl",
+    "sr-latn",
+    "sr",
+    "sv",
+    "th",
+    "tl",
+    "tr",
+    "uk",
+    "zh"
+  ],
+  "platforms": [
+    "WEB"
+  ],
+  "defaultSettingsUrl": "https://www.cookieyes.com/documentation/getting-started/banner-design/add-cookie-banner-to-website"
+}
+
 
 ___TEMPLATE_PARAMETERS___
 
